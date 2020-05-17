@@ -45,7 +45,7 @@ Install Package
 #### Install directly from GitHub
 You can install the library directly from GitHub also using the below command:
    
-    git clone https://github.com/pepipost/pepipost-sdk-python.git pepipost_python
+    git clone https://github.com/kanhaiya2012/Sample-python.git pepipost_python
 
 Note: If you are installing directly from GitHub, then you need to install the dependecies separately which are mentioned in our requirements.txt file.
 
