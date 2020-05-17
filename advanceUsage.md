@@ -19,63 +19,72 @@ api_key = 'your api_key here'
 
 client = PepipostClient(api_key)
 
-
-
 send_controller = client.send
 body = Send()
-body.reply_to = 'replay@pdomain.com'
-body.mfrom = From()
-body.mfrom.email = 'example@your-verified-domain'
-body.mfrom.name = 'From pepipost'
-body.subject = 'Emailing with Pepipost is easy with attributes [%name%]'
-body.template_id = 0
-body.content = []
+body.reply_to = 'you-reply-to-id-address@mydomain.name'
 
+body.mfrom = From()
+body.mfrom.email = 'hello@your-register-domain-with-pepipost'
+body.mfrom.name = 'Pepipost'
+
+body.subject = 'Pepipost Test Mail through Python SDK'
+body.template_id = 122434
+
+body.content = []
 body.content.append(Content())
 body.content[0].mtype = TypeEnum.HTML
-body.content[0].value = '<html><body>Hey,<br><br>Do you know integration is even simpler in Pepipost, <br>with Python <br> Happy Mailing ! <br><br>Pepipost </body></html>'
+body.content[0].value = '<html><body>Hello [%NAME%], Email testing is successful. <br> Hope you enjoyed this integration. <br></html>'
 
 body.attachments = []
-
 body.attachments.append(Attachments())
-body.attachments[0].content = 'dGVzdCB0ZXN0DQp0ZXN0IHRlc3Q='
-body.attachments[0].name = 'test2.txt'
+body.attachments[0].content = 'SGVsbG8gd2VsY29tZSB0byBQRVBJIHY1IEFQSQ=='
+body.attachments[0].name = 'global-text-file.txt'
 
 body.personalizations = []
 
 body.personalizations.append(Personalizations())
-body.personalizations[0].attributes = jsonpickle.decode('{"name":"test","name1":"test1"}')
+body.personalizations[0].attributes = jsonpickle.decode('{"NAME":"User"}')
 body.personalizations[0].attachments = []
 
 body.personalizations[0].attachments.append(Attachments())
-body.personalizations[0].attachments[0].content = 'dGVzdCB0ZXN0DQp0ZXN0IHRlc3Q='
-body.personalizations[0].attachments[0].name = 'test.txt'
+body.personalizations[0].attachments[0].content = 'SGVsbG8gd2VsY29tZSB0byBQRVBJIHY1IEFQSQ=='
+body.personalizations[0].attachments[0].name = 'personalized-test-file.txt'
 
 body.personalizations[0].to = []
 
 body.personalizations[0].to.append(EmailStruct())
-body.personalizations[0].to[0].name = 'recipient name'
-body.personalizations[0].to[0].email = 'recipient@your-mail.com'
+body.personalizations[0].to[0].name = 'Pepi Hero'
+body.personalizations[0].to[0].email = 'toaddress@mydomain.name'
 
 body.personalizations[0].cc = []
 
 body.personalizations[0].cc.append(EmailStruct())
-body.personalizations[0].cc[0].name = 'cc name'
-body.personalizations[0].cc[0].email = 'cc@your-mail.com'
+body.personalizations[0].cc[0].email = 'your-cc-email-address@mydomain.name'
 
 body.personalizations[0].bcc = []
 
 body.personalizations[0].bcc.append(EmailStruct())
-body.personalizations[0].bcc[0].name = 'bcc name'
-body.personalizations[0].bcc[0].email = 'bcc@your-mail.com'
+body.personalizations[0].bcc[0].email = 'your-bcc-email-address@mydomain.name'
 
+body.personalizations[0].token_to = '"{\"Arg1\":\"Value1\"}"'
+body.personalizations[0].token_cc = '"{\"Arg1\":\"Value1\"}"'
+body.personalizations[0].token_bcc = '"{\"Arg1\":\"Value1\"}"'
+body.personalizations[0].headers = '"{\"Arg1\":\"Value1\"}"'
 
 body.settings = Settings()
 body.settings.footer = True
 body.settings.click_track = True
 body.settings.open_track = True
 body.settings.unsubscribe_track = True
-body.tags = ['testtag']
+body.settings.bcc = []
+
+body.settings.bcc.append(EmailStruct())
+body.settings.bcc[0].email = 'your-global-email-address@mydomain.name'
+
+body.tags = ['campaign']
+body.lint_payload = True
+body.schedule = 1589728985
+
 
 try:
     result = send_controller.create_generate_the_mail_send_request(body)
