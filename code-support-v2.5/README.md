@@ -4,6 +4,8 @@
 [![Open Source Helpers](https://www.codetriage.com/pepipost/pepipost-sdk-python/badges/users.svg)](https://www.codetriage.com/pepipost/pepipost-sdk-python)
 [![Twitter Follow](https://img.shields.io/twitter/follow/pepi_post.svg?style=social&label=Follow)](https://twitter.com/pepi_post)
 
+# (This Version is not supported anymore we recommend to use V5 version...)
+
 # Official Python library :snake: for [Pepipost](https://pepipost.com)
 
 This SDK contain methods for easily interacting with the Pepipost Email Sending API to send emails within few seconds.
