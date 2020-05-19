@@ -45,7 +45,7 @@ Install Package
 #### Install directly from GitHub
 You can install the library directly from GitHub also using the below command:
    
-    git clone https://github.com/kanhaiya2012/Sample-python.git pepipost_python
+    git clone https://github.com/pepipost/pepipost-sdk-python.git pepipost_python
 
 Note: If you are installing directly from GitHub, then you need to install the dependecies separately which are mentioned in our requirements.txt file.
 
@@ -75,8 +75,9 @@ client = PepipostClient(api_key)
 
 send_controller = client.send
 body = Send()
+body.reply_to = 'you-reply-to-id-address@mydomain.name'
 body.mfrom = From()
-body.mfrom.email = 'example@your-verified-domain'
+body.mfrom.email = 'hello@your-register-domain-with-pepipost'
 body.mfrom.name = 'Example Pepi'
 body.subject = 'Emailing with Pepipost is easy'
 body.content = []
@@ -91,19 +92,14 @@ body.personalizations.append(Personalizations())
 body.personalizations[0].to = []
 
 body.personalizations[0].to.append(EmailStruct())
-body.personalizations[0].to[0].name = 'recipient name'
-body.personalizations[0].to[0].email = 'recipient@your-mail.com'
+body.personalizations[0].to[0].name = 'random'
+body.personalizations[0].to[0].email = 'random@mydomain.name'
+
+body.tags = ['Campaign']
 
 try:
     result = send_controller.create_generate_the_mail_send_request(body)
-    if not result.get('status') :
-        try:
-            print("Reason :: " + str(result.get('error')[0].get('message')) + "\n" + "Message :: " + str(result.get('error')[0].get('help')))
-        except Exception as e:
-            print(result)    
-    else:
-
-        print("Message :: %s | Message id :: %s" %  (result.get('message'), result.get('data').get('message_id')))
+    print(result)
 except APIException as e: 
     print(e)
 

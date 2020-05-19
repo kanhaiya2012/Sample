@@ -11,6 +11,7 @@ import pepipost.models.content
 import pepipost.models.attachments
 import pepipost.models.personalizations
 import pepipost.models.settings
+import pepipost.models.email_struct
 
 class Send(object):
 
@@ -33,6 +34,7 @@ class Send(object):
         tags (list of string): define custom tags to organize your emails
         lint_payload (bool): TODO: type description here.
         schedule (long|int): schedule the time of email delivery
+        bcc (list of EmailStruct): Global bcc can be defined here
 
     """
 
@@ -48,7 +50,8 @@ class Send(object):
         "settings":'settings',
         "tags":'tags',
         "lint_payload":'lint_payload',
-        "schedule":'schedule'
+        "schedule":'schedule',
+        "bcc":'bcc'
     }
 
     def __init__(self,
@@ -62,7 +65,8 @@ class Send(object):
                  settings=None,
                  tags=None,
                  lint_payload=None,
-                 schedule=None):
+                 schedule=None,
+                 bcc=None):
         """Constructor for the Send class"""
 
         # Initialize members of the class
@@ -77,6 +81,7 @@ class Send(object):
         self.tags = tags
         self.lint_payload = lint_payload
         self.schedule = schedule
+        self.bcc = bcc
 
 
     @classmethod
@@ -120,6 +125,11 @@ class Send(object):
         tags = dictionary.get('tags')
         lint_payload = dictionary.get('lint_payload')
         schedule = dictionary.get('schedule')
+        bcc = None
+        if dictionary.get('bcc') != None:
+            bcc = list()
+            for structure in dictionary.get('bcc'):
+                bcc.append(pepipost.models.email_struct.EmailStruct.from_dictionary(structure))
 
         # Return an object of this model
         return cls(mfrom,
@@ -132,6 +142,7 @@ class Send(object):
                    settings,
                    tags,
                    lint_payload,
-                   schedule)
+                   schedule,
+                   bcc)
 
 

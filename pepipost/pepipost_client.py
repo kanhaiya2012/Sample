@@ -21,7 +21,7 @@ class PepipostClient(object):
 
 
     def __init__(self,
-                 api_key='SGVsbG8gd2VsY29tZSB0byBQRVB'):
+                 api_key='4D51B3ECA2D4ED3A67E4E043B3F1A4D1'):
         if api_key is not None:
             Configuration.api_key = api_key
 

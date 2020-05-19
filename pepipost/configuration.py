@@ -29,21 +29,19 @@ class Configuration(object):
     # An enum for API servers
     class Server(object):
         SERVER1 = 0
-        PEPI_1 = 1
 
     # The environment in which the SDK is running
     environment = Environment.PRODUCTION
 
     # Your Pepipost API Key. You will find the api key in the Pepipost
     # application in Integrations.
-    api_key = 'SGVsbG8gd2VsY29tZSB0byBQRVB'
+    api_key = '4D51B3ECA2D4ED3A67E4E043B3F1A4D1'
 
 
     # All the environments the SDK can run in
     environments = {
         Environment.PRODUCTION: {
-            Server.SERVER1: 'http://apiuk-lb3.falconide.com/v5/mail',
-            Server.PEPI_1: 'https://api.pepipost.com/v5/mail',
+            Server.SERVER1: 'https://api.pepipost.com/v5/mail',
         },
     }
 

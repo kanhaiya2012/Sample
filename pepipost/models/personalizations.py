@@ -17,6 +17,7 @@ class Personalizations(object):
 
     Attributes:
         attributes (object): Dynamic attributes
+        headers (object): Dynamic headers attributes
         attachments (list of Attachments): Attachments to individuals
             recipient
         to (list of EmailStruct): To email-address
@@ -25,7 +26,6 @@ class Personalizations(object):
         token_to (string): token to which is json string
         token_cc (string): token cc which is json string
         token_bcc (string): token bcc which is json string
-        headers (string): headers which is json string
 
     """
 
@@ -33,29 +33,30 @@ class Personalizations(object):
     _names = {
         "to":'to',
         "attributes":'attributes',
+        "headers":'headers',
         "attachments":'attachments',
         "cc":'cc',
         "bcc":'bcc',
         "token_to":'token_to',
         "token_cc":'token_cc',
-        "token_bcc":'token_bcc',
-        "headers":'headers'
+        "token_bcc":'token_bcc'
     }
 
     def __init__(self,
                  to=None,
                  attributes=None,
+                 headers=None,
                  attachments=None,
                  cc=None,
                  bcc=None,
                  token_to=None,
                  token_cc=None,
-                 token_bcc=None,
-                 headers=None):
+                 token_bcc=None):
         """Constructor for the Personalizations class"""
 
         # Initialize members of the class
         self.attributes = attributes
+        self.headers = headers
         self.attachments = attachments
         self.to = to
         self.cc = cc
@@ -63,7 +64,6 @@ class Personalizations(object):
         self.token_to = token_to
         self.token_cc = token_cc
         self.token_bcc = token_bcc
-        self.headers = headers
 
 
     @classmethod
@@ -90,6 +90,7 @@ class Personalizations(object):
             for structure in dictionary.get('to'):
                 to.append(pepipost.models.email_struct.EmailStruct.from_dictionary(structure))
         attributes = dictionary.get('attributes')
+        headers = dictionary.get('headers')
         attachments = None
         if dictionary.get('attachments') != None:
             attachments = list()
@@ -108,17 +109,16 @@ class Personalizations(object):
         token_to = dictionary.get('token_to')
         token_cc = dictionary.get('token_cc')
         token_bcc = dictionary.get('token_bcc')
-        headers = dictionary.get('headers')
 
         # Return an object of this model
         return cls(to,
                    attributes,
+                   headers,
                    attachments,
                    cc,
                    bcc,
                    token_to,
                    token_cc,
-                   token_bcc,
-                   headers)
+                   token_bcc)
 
 
