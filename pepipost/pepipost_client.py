@@ -8,7 +8,19 @@
 
 from pepipost.decorators import lazy_property
 from pepipost.configuration import Configuration
-from pepipost.controllers.send_controller import SendController
+from pepipost.controllers.mail_send_controller import MailSendController
+from pepipost.controllers.events_controller import EventsController
+from pepipost.controllers.stats_controller import StatsController
+from pepipost.controllers.subaccounts_controller import SubaccountsController
+from pepipost.controllers.subaccounts_delete_controller import SubaccountsDeleteController
+from pepipost.controllers.subaccounts_get_sub_accounts_controller import SubaccountsGetSubAccountsController
+from pepipost.controllers.setrecurringcreditddetails_controller import SetrecurringcreditddetailsController
+from pepipost.controllers.subaccounts_setsubaccountcredit_controller import SubaccountsSetsubaccountcreditController
+from pepipost.controllers.subaccounts_update_subaccount_controller import SubaccountsUpdateSubaccountController
+from pepipost.controllers.subaccounts_create_subaccount_controller import SubaccountsCreateSubaccountController
+from pepipost.controllers.suppression_controller import SuppressionController
+from pepipost.controllers.domain_delete_controller import DomainDeleteController
+from pepipost.controllers.domain_controller import DomainController
 
 
 class PepipostClient(object):
@@ -16,12 +28,60 @@ class PepipostClient(object):
     config = Configuration
 
     @lazy_property
-    def send(self):
-        return SendController()
+    def mail_send(self):
+        return MailSendController()
+
+    @lazy_property
+    def events(self):
+        return EventsController()
+
+    @lazy_property
+    def stats(self):
+        return StatsController()
+
+    @lazy_property
+    def subaccounts(self):
+        return SubaccountsController()
+
+    @lazy_property
+    def subaccounts_delete(self):
+        return SubaccountsDeleteController()
+
+    @lazy_property
+    def subaccounts_get_sub_accounts(self):
+        return SubaccountsGetSubAccountsController()
+
+    @lazy_property
+    def setrecurringcreditddetails(self):
+        return SetrecurringcreditddetailsController()
+
+    @lazy_property
+    def subaccounts_setsubaccountcredit(self):
+        return SubaccountsSetsubaccountcreditController()
+
+    @lazy_property
+    def subaccounts_update_subaccount(self):
+        return SubaccountsUpdateSubaccountController()
+
+    @lazy_property
+    def subaccounts_create_subaccount(self):
+        return SubaccountsCreateSubaccountController()
+
+    @lazy_property
+    def suppression(self):
+        return SuppressionController()
+
+    @lazy_property
+    def domain_delete(self):
+        return DomainDeleteController()
+
+    @lazy_property
+    def domain(self):
+        return DomainController()
 
 
     def __init__(self,
-                 api_key='4D51B3ECA2D4ED3A67E4E043B3F1A4D1'):
+                 api_key=None):
         if api_key is not None:
             Configuration.api_key = api_key
 

@@ -7,32 +7,37 @@
 """
 
 
-class Content(object):
+class UpdateCredisOfSubaccount(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'Update Credis of subaccount' model.
 
-    AMP, HTML should be provided
+    UpdateCreditaccount modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        username (string): The username of the subaccount
+        action (ActionEnum): Indicate the action (add or subtract) to be
+            taken.Allowed values increase, decrease
+        amount (int): Amount of credits
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "username":'username',
+        "action":'action',
+        "amount":'amount'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 username=None,
+                 action=None,
+                 amount=None):
+        """Constructor for the UpdateCredisOfSubaccount class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.username = username
+        self.action = action
+        self.amount = amount
 
 
     @classmethod
@@ -53,11 +58,13 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        username = dictionary.get('username')
+        action = dictionary.get('action')
+        amount = dictionary.get('amount')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(username,
+                   action,
+                   amount)
 
 

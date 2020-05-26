@@ -7,32 +7,28 @@
 """
 
 
-class Content(object):
+class DeleteDomain(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'delete domain' model.
 
-    AMP, HTML should be provided
+    delete domain modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        domain (string): Name of the domain
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "domain":'domain'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 domain=None):
+        """Constructor for the DeleteDomain class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.domain = domain
 
 
     @classmethod
@@ -53,11 +49,9 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        domain = dictionary.get('domain')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(domain)
 
 

@@ -7,32 +7,28 @@
 """
 
 
-class Content(object):
+class DeleteSubacoount(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'delete subacoount' model.
 
-    AMP, HTML should be provided
+    Deletesubaccount modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        username (string): The username of the subaccount
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "username":'username'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 username=None):
+        """Constructor for the DeleteSubacoount class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.username = username
 
 
     @classmethod
@@ -53,11 +49,9 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(username)
 
 

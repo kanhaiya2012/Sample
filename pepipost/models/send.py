@@ -21,7 +21,7 @@ class Send(object):
 
     Attributes:
         reply_to (string): email address which recipients can reply to.
-        mfrom (From): email address representing the sender of the mail
+        mfrom (From): Email address representing the sender of the mail
         subject (string): Subject line of the email
         template_id (long|int): ID of the template to be used for sending the
             mail
@@ -29,8 +29,7 @@ class Send(object):
         attachments (list of Attachments): attachment information
         personalizations (list of Personalizations): to recipient with some
             personalized data like to address, attachments and attributes
-        settings (Settings): Enable/Disable settings like click, open and
-            unsubscribe track
+        settings (Settings): TODO: type description here.
         tags (list of string): define custom tags to organize your emails
         lint_payload (bool): TODO: type description here.
         schedule (long|int): schedule the time of email delivery

@@ -7,32 +7,33 @@
 """
 
 
-class Content(object):
+class EnableOrDisableSubacoount(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'enable or disable subacoount' model.
 
-    AMP, HTML should be provided
+    EnableDisablesubaccount modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        username (string): The username of the subaccount
+        disabled (bool): Flag to indicate whether the subaccount should be
+            enabled or disabled.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "username":'username',
+        "disabled":'disabled'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 username=None,
+                 disabled=None):
+        """Constructor for the EnableOrDisableSubacoount class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.username = username
+        self.disabled = disabled
 
 
     @classmethod
@@ -53,11 +54,11 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        username = dictionary.get('username')
+        disabled = dictionary.get('disabled')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(username,
+                   disabled)
 
 

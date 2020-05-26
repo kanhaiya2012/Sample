@@ -7,32 +7,36 @@
 """
 
 
-class Content(object):
+class RemoveEmailOrDomainToSuppressionList(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'Remove email or domain to Suppression list' model.
 
-    AMP, HTML should be provided
+    Remove Suppression modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        domain (string): List one or more recipient domains to be removed from
+            the suppression list here. <br>\nComma separate the values to
+            suppress multiple recipient domains.
+        email (string): List one or more email addresses to be removed from
+            the suppression list here. <br>\nComma separate the values to
+            suppress multiple email addresses.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "domain":'domain',
+        "email":'email'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 domain=None,
+                 email=None):
+        """Constructor for the RemoveEmailOrDomainToSuppressionList class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.domain = domain
+        self.email = email
 
 
     @classmethod
@@ -53,11 +57,11 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        domain = dictionary.get('domain')
+        email = dictionary.get('email')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(domain,
+                   email)
 
 

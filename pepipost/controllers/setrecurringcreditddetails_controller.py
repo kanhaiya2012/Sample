@@ -12,23 +12,23 @@ from pepipost.controllers.base_controller import BaseController
 from pepipost.http.auth.custom_header_auth import CustomHeaderAuth
 from pepipost.exceptions.api_exception import APIException
 
-class SendController(BaseController):
+class SetrecurringcreditddetailsController(BaseController):
 
     """A Controller to access Endpoints in the pepipost API."""
 
 
-    def create_generate_the_mail_send_request(self,
-                                              body):
-        """Does a POST request to /send.
+    def create_setrecurringcreditddetails_post(self,
+                                               body):
+        """Does a POST request to /setrecurringcreditddetails.
 
-        The endpoint send is used to generate the request to pepipost server
-        for sending an email to recipients.
+        Lets you configure a recurring credit allocation to a subaccount
 
         Args:
-            body (Send): New mail request will be generated
+            body (UpdateRecurringCredisOfSubaccount): Update recurring credit
+                account
 
         Returns:
-            list of string: Response from the API. API Response
+            object: Response from the API. API Response
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -39,14 +39,13 @@ class SendController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/send'
-        _query_builder = Configuration.get_base_uri(Configuration.Server.SERVER1)
+        _url_path = '/setrecurringcreditddetails'
+        _query_builder = Configuration.base_uri
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)
 
         # Prepare headers
         _headers = {
-            'accept': 'application/json',
             'content-type': 'application/json; charset=utf-8'
         }
 
@@ -56,11 +55,15 @@ class SendController(BaseController):
         _context = self.execute_request(_request)
 
         # Endpoint and global error handling using HTTP status codes.
-        if _context.response.status_code in (400, 401, 403):
-            return APIHelper.json_deserialize(_context.response.raw_body)        
-        if _context.response.status_code == 405:
+        if _context.response.status_code == 400:
+            raise APIException('API Response', _context)
+        elif _context.response.status_code == 401:
+            raise APIException('API Response', _context)
+        elif _context.response.status_code == 403:
+            raise APIException('API Response', _context)
+        elif _context.response.status_code == 405:
             raise APIException('Invalid input', _context)
         self.validate_response(_context)
 
         # Return appropriate type
-        return APIHelper.json_deserialize(_context.response.raw_body)
+        return _context.response.raw_body

@@ -22,38 +22,11 @@ class Configuration(object):
     # (allowed: indexed, unindexed, plain, csv, tsv, psv)
     array_serialization = "indexed"
 
-    # An enum for SDK environments
-    class Environment(object):
-        PRODUCTION = 0
-
-    # An enum for API servers
-    class Server(object):
-        SERVER1 = 0
-
-    # The environment in which the SDK is running
-    environment = Environment.PRODUCTION
+    # The base Uri for API calls
+    base_uri = 'https://api.pepipost.com/v5'
 
     # Your Pepipost API Key. You will find the api key in the Pepipost
     # application in Integrations.
-    api_key = '4D51B3ECA2D4ED3A67E4E043B3F1A4D1'
+    # TODO: Set an appropriate value
+    api_key = None
 
-
-    # All the environments the SDK can run in
-    environments = {
-        Environment.PRODUCTION: {
-            Server.SERVER1: 'https://api.pepipost.com/v5/mail',
-        },
-    }
-
-    @classmethod
-    def get_base_uri(cls, server=Server.SERVER1):
-        """Generates the appropriate base URI for the environment and the server.
-
-        Args:
-            server (Configuration.Server): The server enum for which the base URI is required.
-
-        Returns:
-            String: The base URI.
-
-        """
-        return cls.environments[cls.environment][server]

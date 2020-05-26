@@ -90,7 +90,5 @@ class BaseController(object):
             context (HttpContext): The HttpContext of the API call.
 
         """
-        if context.response.status_code == 400:
-            raise APIException('Bad request', context)
-        elif (context.response.status_code < 200) or (context.response.status_code > 208): #[200,208] = HTTP OK
+        if (context.response.status_code < 200) or (context.response.status_code > 208): #[200,208] = HTTP OK
             raise APIException('HTTP response not OK.', context)

@@ -7,32 +7,34 @@
 """
 
 
-class Content(object):
+class DomainStruct(object):
 
-    """Implementation of the 'Content' model.
+    """Implementation of the 'DomainStruct' model.
 
-    AMP, HTML should be provided
+    Domain Modal
 
     Attributes:
-        mtype (TypeEnum): TODO: type description here.
-        value (string): HTML content to be sent in your email
+        domain (string): The domain you wish to include in the 'From' header
+            of your emails.
+        envelope_name (string): The subdomain which will be used for tracking
+            opens, clicks and unsubscribe
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype":'type',
-        "value":'value'
+        "domain":'domain',
+        "envelope_name":'envelopeName'
     }
 
     def __init__(self,
-                 mtype=None,
-                 value=None):
-        """Constructor for the Content class"""
+                 domain=None,
+                 envelope_name=None):
+        """Constructor for the DomainStruct class"""
 
         # Initialize members of the class
-        self.mtype = mtype
-        self.value = value
+        self.domain = domain
+        self.envelope_name = envelope_name
 
 
     @classmethod
@@ -53,11 +55,11 @@ class Content(object):
             return None
 
         # Extract variables from the dictionary
-        mtype = dictionary.get('type')
-        value = dictionary.get('value')
+        domain = dictionary.get('domain')
+        envelope_name = dictionary.get('envelopeName')
 
         # Return an object of this model
-        return cls(mtype,
-                   value)
+        return cls(domain,
+                   envelope_name)
 
 
